@@ -21,6 +21,7 @@
     "mongoose": "^7.0.3",
     "netlify-cli": "^13.2.1",
     "netlify-lambda": "^2.0.16",
+    "nodemailer": "^6.9.1",
     "serverless-http": "^3.2.0"
   }
 }
