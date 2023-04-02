@@ -32,8 +32,7 @@ const usersModel = mongoose.Schema({
     default: false,
   },
   code: {
-    type: String,
-    trim: true,
+    type: Number,
   },
   codeExpiry: {
     type: Date,
