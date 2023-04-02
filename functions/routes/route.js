@@ -11,13 +11,17 @@ const {
   changePassword,
   getUserProfile,
   updateUserProfile,
+  verifyToken,
+  resetPassword,
 } = require('../contollers/user');
 
 router.route('/register').post(jsonParser, register);
 router.route('/login').post(jsonParser, login);
 router.route('/forgotpassword').post(jsonParser, forgotPassword);
 router.route('/changepassword').put(jsonParser, changePassword);
-router.route('/profile').get(jsonParser, getUserProfile);
+router.route('/profile').post(jsonParser, getUserProfile);
+router.route('/resetpassword').post(jsonParser, resetPassword);
+router.route('/token').get(jsonParser, verifyToken);
 router.route('/updateprofile').put(jsonParser, updateUserProfile);
 router.get('/', (req, res, next) => {
   res.send(

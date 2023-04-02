@@ -1,11 +1,11 @@
 require('dotenv').config();
 var jwt = require('jsonwebtoken');
 
-const generateJWT = async (expireTime, email) => {
+const generateJWT = async (expiresIn, email) => {
   return new Promise(async (resolve, reject) => {
     try {
       const token = await jwt.sign({ email }, process.env.JWT_SECRET_KEY, {
-        expiresIn: Math.floor(Date.now() / 1000) + parseInt(expireTime),
+        expiresIn,
       });
       resolve(token);
     } catch (error) {
