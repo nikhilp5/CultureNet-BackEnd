@@ -3,11 +3,18 @@ image: node:latest
 stages:
   - deploy
 
-deploy:
+deploy_prod:
   stage: deploy
   script:
     - npm install
-    - npm run build
+    - netlify deploy --auth $NETLIFY_AUTH_TOKEN --dir 'dist' --site $SITE_ID_PROD --prod
   only:
     - main
+
+deploy_develop:
+  stage: deploy
+  script:
+    - npm install
+    - netlify deploy --auth $NETLIFY_AUTH_TOKEN --dir 'dist' --site $SITE_ID_DEVELOP --prod
+  only:
     - develop
