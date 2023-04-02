@@ -7,6 +7,7 @@ deploy_prod:
   stage: deploy
   script:
     - npm install
+    - npm install netlify-cli -g
     - netlify deploy --auth $NETLIFY_AUTH_TOKEN --dir 'dist' --site $SITE_ID_PROD --prod
   only:
     - main
@@ -15,6 +16,7 @@ deploy_develop:
   stage: deploy
   script:
     - npm install
+    - npm install netlify-cli -g
     - netlify deploy --auth $NETLIFY_AUTH_TOKEN --dir 'dist' --site $SITE_ID_DEVELOP --prod
   only:
     - develop
