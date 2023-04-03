@@ -140,8 +140,9 @@ const resetPassword = async (req, res, next) => {
           success: true,
           token,
         });
+      } else {
+        throw getError(401, 'Invalid or expired reset code');
       }
-      throw getError(401, 'Invalid or expired reset code');
     } else {
       throw getError(400, 'Invalid or missing body paramaters');
     }
