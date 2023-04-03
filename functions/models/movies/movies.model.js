@@ -1,4 +1,4 @@
-const mongoose = require('../utils/dbConn');
+const mongoose = require('../../utils/dbConn');
 
 const moviesModel = mongoose.Schema({
   title: {
@@ -18,6 +18,17 @@ const moviesModel = mongoose.Schema({
     type: String,
     trim: true,
   },
+  director: {
+    type: String,
+    required: true,
+    trim: true
+  },
+
+  genre:[ {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'genres',
+    required: true,
+  }],
 });
 
 module.exports = mongoose.model('movies', moviesModel);

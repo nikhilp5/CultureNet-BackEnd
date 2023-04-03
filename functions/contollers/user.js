@@ -1,6 +1,6 @@
 const validator = require('../utils/validator');
 const getError = require('../utils/getError');
-const User = require('../models/user.model');
+const User = require('../models/users.model');
 
 const fetchUserById = async (req, res, next) => {
   try {
