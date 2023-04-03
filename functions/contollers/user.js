@@ -68,8 +68,9 @@ const login = async (req, res, next) => {
             success: true,
             token,
             email,
-            id:targetRecord._id.toString(),
+            id:targetRecord._id,
           });
+      
         } else {
           throw getError(401, 'Invalid credentials');
         }
