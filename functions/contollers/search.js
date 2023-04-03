@@ -8,6 +8,7 @@ const mongoose = require("../utils/dbConn");
 const searchContent = async (req, res, next) => {
   try {
     const searchTerm = req.params.searchterm;
+    const currentUserId = req.params.userid.toString();
     let moviesResult = await movies
       .find({
         $or: [
@@ -34,9 +35,15 @@ const searchContent = async (req, res, next) => {
       })
       .sort({ title: "ascending" });
 
-    const watchlistResult = await watchlist.find({
-      userId: "6424fbfd655f8005ee60191e",
+    let watchlistResult = await watchlist.find({
+      userId: currentUserId,
     });
+    if (watchlistResult.length == 0) {
+      addInitialEmptyWatchlist(currentUserId);
+      watchlistResult = await watchlist.find({
+        userId: currentUserId,
+      });
+    }
     let updatedMovieResults = moviesResult;
     let updatedBookResults = booksResult;
     if (watchlistResult[0].movieId.length > 0) {
@@ -88,6 +95,14 @@ const searchContent = async (req, res, next) => {
   }
 };
 
+const addInitialEmptyWatchlist = (currentUserId) => {
+  let initialEmptyWatchlist = {
+    userId: currentUserId,
+    bookId: [],
+    movieId: [],
+  };
+  watchlist.insertMany(initialEmptyWatchlist);
+};
 module.exports = {
   searchContent,
 };

@@ -16,18 +16,22 @@ const addInitialEmptyWatchlist = (currentUserId) => {
 
 const addToWatchlist = async (req, res, next) => {
   try {
-    if (req.body && req.body.type && req.body.content) {
-      const watchlistResult = await watchlist.find({
-        userId: "6424fbfd655f8005ee60191e",
+    if (req.body && req.body.type && req.body.content && req.body.userid) {
+      const currentUserId = req.body.userid.toString();
+      let watchlistResult = await watchlist.find({
+        userId: currentUserId,
       });
       if (watchlistResult.length == 0) {
-        addInitialEmptyWatchlist("6424fbfd655f8005ee60191e");
+        addInitialEmptyWatchlist(currentUserId);
+        watchlistResult = await watchlist.find({
+          userId: currentUserId,
+        });
       }
       if (req.body.type === "movies") {
         let oldMovieArray = watchlistResult[0].movieId;
         oldMovieArray.push(req.body.content._id);
         const updateResult = await watchlist.findOneAndUpdate(
-          { userId: "6424fbfd655f8005ee60191e" },
+          { userId: currentUserId },
           { movieId: oldMovieArray }
         );
         res.status(200).json({
@@ -37,7 +41,7 @@ const addToWatchlist = async (req, res, next) => {
         let oldBookArray = watchlistResult[0].bookId;
         oldBookArray.push(req.body.content._id);
         const updateResult = await watchlist.findOneAndUpdate(
-          { userId: "6424fbfd655f8005ee60191e" },
+          { userId: currentUserId },
           { bookId: oldBookArray }
         );
         res.status(200).json({
@@ -53,15 +57,16 @@ const addToWatchlist = async (req, res, next) => {
 
 const removeFromWatchlist = async (req, res, next) => {
   try {
-    if (req.body && req.body.type && req.body.content) {
+    if (req.body && req.body.type && req.body.content && req.body.userid) {
+      const currentUserId = req.body.userid.toString();
       const watchlistResult = await watchlist.find({
-        userId: "6424fbfd655f8005ee60191e",
+        userId: currentUserId,
       });
       if (req.body.type === "movies") {
         let oldMovieArray = watchlistResult[0].movieId;
         oldMovieArray.remove(req.body.content._id);
         const updateResult = await watchlist.findOneAndUpdate(
-          { userId: "6424fbfd655f8005ee60191e" },
+          { userId: currentUserId },
           { movieId: oldMovieArray }
         );
         res.status(200).json({
@@ -71,7 +76,7 @@ const removeFromWatchlist = async (req, res, next) => {
         let oldBookArray = watchlistResult[0].bookId;
         oldBookArray.remove(req.body.content._id);
         const updateResult = await watchlist.findOneAndUpdate(
-          { userId: "6424fbfd655f8005ee60191e" },
+          { userId: currentUserId },
           { bookId: oldBookArray }
         );
         res.status(200).json({
@@ -87,11 +92,15 @@ const removeFromWatchlist = async (req, res, next) => {
 
 const getWatchlist = async (req, res, next) => {
   try {
-    const watchlistResult = await watchlist.find({
-      userId: "6424fbfd655f8005ee60191e",
+    const currentUserId = req.params.userid.toString();
+    let watchlistResult = await watchlist.find({
+      userId: currentUserId,
     });
     if (watchlistResult.length == 0) {
-      addInitialEmptyWatchlist("6424fbfd655f8005ee60191e");
+      addInitialEmptyWatchlist(currentUserId);
+      watchlistResult = await watchlist.find({
+        userId: currentUserId,
+      });
     }
     let moviesResult = await movies.find({
       _id: {
