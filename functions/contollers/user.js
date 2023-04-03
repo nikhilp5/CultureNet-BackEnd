@@ -68,7 +68,7 @@ const login = async (req, res, next) => {
             success: true,
             token,
             email,
-            id:targetRecord._id,
+            id: targetRecord._id,
           });
       
         } else {
@@ -157,15 +157,6 @@ const resetPassword = async (req, res, next) => {
 const changePassword = async (req, res, next) => {
   try {
     if (req.body.email && req.body.password && req.body.confirmPassword) {
-      let token = req.header('authorization');
-      if (!token) {
-        throw getError(401, 'User unauthorized');
-      }
-      token = token.split(' ')[1];
-      const isVerified = await jwtUtil.verifyJWT(token);
-      if (!isVerified.verify) {
-        throw getError(401, 'User unauthorized');
-      }
       const { email, password, confirmPassword } = req.body;
       if (password !== confirmPassword) {
         throw getError(400, 'Passwords do not match');
@@ -207,12 +198,6 @@ const changePassword = async (req, res, next) => {
 const getUserProfile = async (req, res, next) => {
   try {
     if (req.body && req.body.email) {
-      let token = req.header('authorization');
-      token = token.split(' ')[1];
-      const isVerified = await jwtUtil.verifyJWT(token);
-      if (!isVerified.verify) {
-        throw getError(401, 'User unauthorized');
-      }
       const { email } = req.body;
       const user = await User.findOne({ email });
       if (user) {
@@ -235,17 +220,8 @@ const getUserProfile = async (req, res, next) => {
 
 const updateUserProfile = async (req, res, next) => {
   try {
-    if (req.body) {
+    if (req.body && req.body.email) {
       const { email, firstName, lastName, bio, nsfw } = req.body;
-      let token = req.header('authorization');
-      if (!token) {
-        throw getError(401, 'User unauthorized');
-      }
-      token = token.split(' ')[1];
-      const isVerified = await jwtUtil.verifyJWT(token);
-      if (!isVerified.verify) {
-        throw getError(401, 'User unauthorized');
-      }
       var user = await User.findOneAndUpdate(
         { email },
         { firstName, lastName, bio, nsfw },
@@ -279,13 +255,10 @@ const verifyToken = async (req, res, next) => {
     }
     token = token.split(' ')[1];
     const isVerified = await jwtUtil.verifyJWT(token);
-    if (isVerified.verify) {
-      res.json({
-        message: 'Token Verified',
-        success: true,
-      });
+    if (!isVerified.verify) {
+      throw getError(401, 'Token expired or invalid');
     }
-    throw getError(401, 'Token expired or invalid');
+    next();
   } catch (err) {
     console.log(err);
     next(err);
