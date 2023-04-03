@@ -1,6 +1,6 @@
-const validator = require('../utils/validator');
-const getError = require('../utils/getError');
-const User = require('../models/users.model');
+const validator = require("../utils/validator");
+const getError = require("../utils/getError");
+const User = require("../models/users.model");
 
 const fetchUserById = async (req, res, next) => {
   try {
@@ -12,7 +12,7 @@ const fetchUserById = async (req, res, next) => {
         user: { firstName, email },
       });
     } else {
-      throw getError(404, 'No such user found');
+      throw getError(404, "No such user found");
     }
   } catch (err) {
     console.log(err);
@@ -27,7 +27,7 @@ const addUser = async (req, res, next) => {
       const { email, firstName } = req.body;
       const targetRecord = await User.findOne({ email });
       if (targetRecord) {
-        throw getError(409, 'Email already exists');
+        throw getError(409, "Email already exists");
       }
       const user = new User({
         firstName,
@@ -39,13 +39,13 @@ const addUser = async (req, res, next) => {
         .then((doc) => {
           console.log(doc);
           res.status(201);
-          res.json({ message: 'User added', success: true });
+          res.json({ message: "User added", success: true });
         })
         .catch((err) => {
           next(err);
         });
     } else {
-      throw getError(400, 'Invalid or missing body paramaters');
+      throw getError(400, "Invalid or missing body paramaters");
     }
   } catch (err) {
     console.log(err);
