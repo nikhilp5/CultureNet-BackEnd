@@ -8,8 +8,8 @@ const generateJWT = async (expiresIn, email) => {
         expiresIn,
       });
       resolve(token);
-    } catch (error) {
-      reject(error);
+    } catch (err) {
+      reject(err);
     }
   });
 };
@@ -24,9 +24,9 @@ const verifyJWT = (token) => {
           resolve({ verify: true, data: decoded.email });
         }
       });
-    } catch (error) {
-      console.log(error);
-      reject(error);
+    } catch (err) {
+      console.log(err);
+      reject(err);
     }
   });
 };

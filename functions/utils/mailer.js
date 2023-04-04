@@ -19,9 +19,9 @@ const sendEmail = async (to, subject, text) => {
       });
 
       resolve(mail.messageId);
-    } catch (error) {
-      console.log('Error', error);
-      reject(error);
+    } catch (err) {
+      console.log('Error', err);
+      reject(err);
     }
   });
 };
