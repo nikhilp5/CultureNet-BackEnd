@@ -1,4 +1,4 @@
-const mongoose = require('../utils/dbConn');
+const mongoose = require('../../utils/dbConn');
 
 const booksModel = mongoose.Schema({
   title: {
