@@ -13,8 +13,6 @@ const searchContent = async (req, res, next) => {
       .find({
         $or: [
           { title: { $regex: ".*" + searchTerm + ".*", $options: "i" } },
-          { description: { $regex: ".*" + searchTerm + ".*", $options: "i" } },
-          { director: { $regex: ".*" + searchTerm + ".*", $options: "i" } },
         ],
       })
       .sort({ title: "ascending" });
@@ -30,7 +28,6 @@ const searchContent = async (req, res, next) => {
       .find({
         $or: [
           { title: { $regex: ".*" + searchTerm + ".*", $options: "i" } },
-          { description: { $regex: ".*" + searchTerm + ".*", $options: "i" } },
         ],
       })
       .sort({ title: "ascending" });

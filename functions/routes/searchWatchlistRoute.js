@@ -10,12 +10,13 @@ const {
   removeFromWatchlist,
   getWatchlist,
 } = require("../contollers/watchlist");
+const { verifyToken } = require("../contollers/user");
 
-searchWatchlistRoute.route("/search/:searchterm/:userid").get(searchContent);
-searchWatchlistRoute.route("/addToWatchlist").post(jsonParser, addToWatchlist);
+searchWatchlistRoute.route("/search/:searchterm/:userid").get(verifyToken, searchContent);
+searchWatchlistRoute.route("/addToWatchlist").post(verifyToken, addToWatchlist);
 searchWatchlistRoute
   .route("/removeFromWatchlist")
-  .post(jsonParser, removeFromWatchlist);
-searchWatchlistRoute.route("/getWatchlist/:userid").get(getWatchlist);
+  .post(verifyToken, removeFromWatchlist);
+searchWatchlistRoute.route("/getWatchlist/:userid").get(verifyToken, getWatchlist);
 
 module.exports = searchWatchlistRoute;
