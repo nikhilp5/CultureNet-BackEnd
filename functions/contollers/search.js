@@ -4,6 +4,7 @@ const users = require("../models/users.model");
 const books = require("../models/books/books.model");
 const watchlist = require("../models/watchlist.model");
 const mongoose = require("../utils/dbConn");
+const watched = require("../models/watched.model");
 
 const searchContent = async (req, res, next) => {
   try {
@@ -11,9 +12,7 @@ const searchContent = async (req, res, next) => {
     const currentUserId = req.params.userid.toString();
     let moviesResult = await movies
       .find({
-        $or: [
-          { title: { $regex: ".*" + searchTerm + ".*", $options: "i" } },
-        ],
+        $or: [{ title: { $regex: ".*" + searchTerm + ".*", $options: "i" } }],
       })
       .sort({ title: "ascending" });
     const usersResult = await users
@@ -26,57 +25,78 @@ const searchContent = async (req, res, next) => {
       .sort({ firstName: "ascending" });
     let booksResult = await books
       .find({
-        $or: [
-          { title: { $regex: ".*" + searchTerm + ".*", $options: "i" } },
-        ],
+        $or: [{ title: { $regex: ".*" + searchTerm + ".*", $options: "i" } }],
       })
       .sort({ title: "ascending" });
 
     let watchlistResult = await watchlist.find({
       userId: currentUserId,
     });
+
+    let watchedResult = await watched.find({
+      userId: currentUserId,
+    });
+
     if (watchlistResult.length == 0) {
       addInitialEmptyWatchlist(currentUserId);
       watchlistResult = await watchlist.find({
         userId: currentUserId,
       });
     }
+
+    if (watchedResult.length == 0) {
+      addInitialEmptyWatched(currentUserId);
+      watchedResult = await watched.find({
+        userId: currentUserId,
+      });
+    }
     let updatedMovieResults = moviesResult;
     let updatedBookResults = booksResult;
-    if (watchlistResult[0].movieId.length > 0) {
-      let movieWatchlistContent = watchlistResult[0].movieId;
-      movieWatchlistContent.forEach((watchlistMovie) => {
-        moviesResult.forEach((movieRes, index) => {
-          if (watchlistMovie.toString() === movieRes._id.toString()) {
-            let watchlist = true;
-            movie = { ...movieRes.toObject(), watchlist };
-            updatedMovieResults[index] = movie;
-          }
-        });
+
+    let movieWatchlistContent = watchlistResult[0].movieId;
+    movieWatchlistContent.forEach((watchlistMovie) => {
+      moviesResult.forEach((movieRes, index) => {
+        if (watchlistMovie.toString() === movieRes._id.toString()) {
+          let watchlist = true;
+          let movie = { ...movieRes.toObject(), watchlist };
+          updatedMovieResults[index] = movie;
+        }
       });
-    } else {
-      moviesResult = moviesResult.map((item) => ({
-        ...item.toObject(),
-        watchlist: false,
-      }));
-    }
-    if (watchlistResult[0].bookId.length > 0) {
-      let bookWatchlistContent = watchlistResult[0].bookId;
-      bookWatchlistContent.forEach((watchlistBook) => {
-        booksResult.forEach((bookRes, index) => {
-          if (watchlistBook.toString() === bookRes._id.toString()) {
-            let watchlist = true;
-            book = { ...bookRes.toObject(), watchlist };
-            updatedBookResults[index] = book;
-          }
-        });
+    });
+
+    let bookWatchlistContent = watchlistResult[0].bookId;
+    bookWatchlistContent.forEach((watchlistBook) => {
+      booksResult.forEach((bookRes, index) => {
+        if (watchlistBook.toString() === bookRes._id.toString()) {
+          let watchlist = true;
+          let book = { ...bookRes.toObject(), watchlist };
+          updatedBookResults[index] = book;
+        }
       });
-    } else {
-      booksResult = booksResult.map((item) => ({
-        ...item.toObject(),
-        watchlist: false,
-      }));
-    }
+    });
+
+    let movieWatchedContent = watchedResult[0].movieId;
+    movieWatchedContent.forEach((watchedMovie) => {
+      moviesResult.forEach((movieRes, index) => {
+        if (watchedMovie.toString() === movieRes._id.toString()) {
+          let watched = true;
+          let movie = { ...movieRes.toObject(), watched };
+          updatedMovieResults[index] = movie;
+        }
+      });
+    });
+
+    let bookWatchedContent = watchedResult[0].bookId;
+    bookWatchedContent.forEach((watchedBook) => {
+      booksResult.forEach((bookRes, index) => {
+        if (watchedBook.toString() === bookRes._id.toString()) {
+          let watched = true;
+          let book = { ...bookRes.toObject(), watched };
+          updatedBookResults[index] = book;
+        }
+      });
+    });
+
     const finalResult = {
       movies: updatedMovieResults,
       books: updatedBookResults,
@@ -99,6 +119,15 @@ const addInitialEmptyWatchlist = (currentUserId) => {
     movieId: [],
   };
   watchlist.insertMany(initialEmptyWatchlist);
+};
+
+const addInitialEmptyWatched = (currentUserId) => {
+  let initialEmptyWatched = {
+    userId: currentUserId,
+    bookId: [],
+    movieId: [],
+  };
+  watched.insertMany(initialEmptyWatched);
 };
 module.exports = {
   searchContent,
