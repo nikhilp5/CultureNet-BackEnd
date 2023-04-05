@@ -10,7 +10,7 @@ const HASH_ROUNDS = 15;
 const register = async (req, res, next) => {
   try {
     if (
-      req.body &&
+      Object.keys(req.body).length > 0 &&
       req.body.email &&
       req.body.password &&
       req.body.confirmPassword
@@ -54,8 +54,12 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    if (req.body && req.body.email && req.body.password) {
+    if (
+      Object.keys(req.body).length > 0 &&
+      req.body.email &&
+      req.body.password
+    ) {
+      const { email, password } = req.body;
       const targetRecord = await User.findOne({
         email,
       });
@@ -85,8 +89,8 @@ const login = async (req, res, next) => {
 
 const forgotPassword = async (req, res, next) => {
   try {
-    const { email } = req.body;
-    if (req.body && req.body.email) {
+    if (Object.keys(req.body).length > 0 && req.body.email) {
+      const { email } = req.body;
       const code = Math.floor(100000 + Math.random() * 900000);
 
       await sendEmail(
@@ -121,7 +125,7 @@ const forgotPassword = async (req, res, next) => {
 
 const resetPassword = async (req, res, next) => {
   try {
-    if (req.body && req.body.code && req.body.email) {
+    if (Object.keys(req.body).length > 0 && req.body.code && req.body.email) {
       const { email, code } = req.body;
 
       const targetRecord = await User.findOne({
@@ -153,7 +157,11 @@ const resetPassword = async (req, res, next) => {
 
 const changePassword = async (req, res, next) => {
   try {
-    if (req.body && req.body.password && req.body.confirmPassword) {
+    if (
+      Object.keys(req.body).length > 0 &&
+      req.body.password &&
+      req.body.confirmPassword
+    ) {
       const { password, confirmPassword } = req.body;
       const { email } = req.data.user;
       if (password !== confirmPassword) {
@@ -214,7 +222,7 @@ const getUserProfile = async (req, res, next) => {
 
 const updateUserProfile = async (req, res, next) => {
   try {
-    if (req.body) {
+    if (Object.keys(req.body).length > 0) {
       const { firstName, lastName, bio, nsfw } = req.body;
       const { email } = req.data.user;
       var user = await User.findOneAndUpdate(
