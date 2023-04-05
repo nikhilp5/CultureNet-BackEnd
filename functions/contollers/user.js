@@ -70,7 +70,6 @@ const login = async (req, res, next) => {
             email,
             id: targetRecord._id,
           });
-      
         } else {
           throw getError(401, 'Invalid credentials');
         }
@@ -95,7 +94,10 @@ const forgotPassword = async (req, res, next) => {
       await sendEmail(
         email,
         `CultureNet - Password Reset Code - ${code}`,
-        'Enter the code below to reset the password:' + '\n' + code,
+        'Enter the code below to reset the password:' +
+          '\n' +
+          code +
+          '\nThis code is valid for 10 minutes.',
       );
 
       var user = await User.findOneAndUpdate(
