@@ -20,3 +20,12 @@ deploy_develop:
     - netlify deploy --auth $NETLIFY_AUTH_TOKEN --dir 'dist' --site $SITE_ID_DEVELOP --prod
   only:
     - develop
+
+deploy_monil:
+  stage: deploy
+  script:
+    - npm install
+    - npm install netlify-cli -g
+    - netlify deploy --auth $NETLIFY_AUTH_TOKEN --dir 'dist' --site $SITE_ID_MONIL --prod
+  only:
+    - main-monil
