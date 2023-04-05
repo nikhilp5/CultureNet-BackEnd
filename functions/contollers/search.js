@@ -1,3 +1,5 @@
+//Author-Nikhil Panikkassery (B00934514)
+
 const getError = require("../utils/getError");
 const movies = require("../models/movies/movies.model");
 const users = require("../models/users.model");
