@@ -16,10 +16,8 @@ const {
 router.route('/register').post(register);
 router.route('/login').post(login);
 router.route('/forgotpassword').post(forgotPassword);
-router
-  .route('/changepassword')
-  .post(resetPassword)
-  .put(verifyToken, changePassword);
+router.route('/verifycode').post(resetPassword);
+router.route('/changepassword').put(verifyToken, changePassword);
 router
   .route('/profile')
   .get(verifyToken, getUserProfile)

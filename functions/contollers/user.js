@@ -11,11 +11,14 @@ const register = async (req, res, next) => {
   try {
     if (
       Object.keys(req.body).length > 0 &&
+      req.body.firstName &&
+      req.body.lastName &&
       req.body.email &&
       req.body.password &&
       req.body.confirmPassword
     ) {
-      const { email, password, confirmPassword } = req.body;
+      const { firstName, lastName, email, password, confirmPassword } =
+        req.body;
       if (password !== confirmPassword) {
         throw getError(400, 'Passwords do not match');
       }
@@ -29,6 +32,8 @@ const register = async (req, res, next) => {
         throw getError(500, 'Error in password hashing');
       }
       const user = new User({
+        firstName,
+        lastName,
         email,
         password: passwordHash,
       });
@@ -71,6 +76,7 @@ const login = async (req, res, next) => {
             message: 'Login successful',
             success: true,
             token,
+            user: targetRecord,
           });
         } else {
           throw getError(401, 'Invalid credentials');
