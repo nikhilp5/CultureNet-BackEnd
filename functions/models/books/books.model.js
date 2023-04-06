@@ -1,3 +1,4 @@
+const { text } = require('body-parser');
 const mongoose = require('../../utils/dbConn');
 
 const booksModel = mongoose.Schema({
@@ -22,7 +23,19 @@ const booksModel = mongoose.Schema({
   image: {
     type: String,
     trim: true,
+  }, 
+  publisher: {
+    type: String,
+    trim: true
   },
+  summary: {
+    type: Text,
+    trim: true
+  },
+  isbn: {
+    type: String,
+    trim: true
+  }
 });
 
 module.exports = mongoose.model('books', booksModel);
