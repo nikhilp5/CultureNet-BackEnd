@@ -1,4 +1,3 @@
-const { text } = require('body-parser');
 const mongoose = require('../../utils/dbConn');
 
 const booksModel = mongoose.Schema({
@@ -29,10 +28,15 @@ const booksModel = mongoose.Schema({
     trim: true
   },
   summary: {
-    type: Text,
+    type: String,
+    text: true,
     trim: true
   },
   isbn: {
+    type: String,
+    trim: true
+  },
+  genre: {
     type: String,
     trim: true
   }
