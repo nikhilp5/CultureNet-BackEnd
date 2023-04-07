@@ -1,0 +1,233 @@
+[
+    {
+      "title": "To Kill a Mockingbird",
+      "description": "A Pulitzer Prize-winning Novel set in the 1930s in the Fictional town of Maycomb, Alabama, that follows the trial of a black man who is accused of raping a white woman.",
+      "authors": ["Harper Lee"],
+      "dateReleased": "July 11, 1960",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/81GeAcdMCsL.jpg",
+      "publisher": "J. B. Lippincott & Co.",
+      "summary": "To Kill a Mockingbird is a Novel that explores the racial tensions in the Deep South. It is told through the eyes of Scout Finch, a young girl who is growing up in a world that is becoming increasingly hostile towards people of color. The Novel is both a coming-of-age story and a meditation on the nature of justice.",
+      "isbn": "978-0446310789",
+      "genre": "Novel"
+    },
+    {
+      "title": "The Catcher in the Rye",
+      "description": "A controversial Novel about a teenage boy named Holden Caulfield who is expelled from his prep school and spends three days wandering around New York City.",
+      "authors": ["J. D. Salinger"],
+      "dateReleased": "July 16, 1951",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/81T2TtW8jNL.jpg",
+      "publisher": "Little, Brown and Company",
+      "summary": "The Catcher in the Rye is a Novel that explores themes of alienation, isolation, and identity. It is told in a first-person narrative by Holden Caulfield, a teenage boy who is struggling to find his place in the world. The Novel has become a cultural touchstone for many readers, and has been both celebrated and criticized for its frank depictions of teenage angst and rebellion.",
+      "isbn": "978-0316769488",
+      "genre": "Novel"
+    },
+    {
+      "title": "Pride and Prejudice",
+      "description": "A classic Novel that follows the lives and loves of the Bennet family, particularly the second eldest daughter Elizabeth and the wealthy, proud Mr. Darcy.",
+      "authors": ["Jane Austen"],
+      "dateReleased": "January 28, 1813",
+      "image_url": "https://images-na.ssl-images-amazon.com/images/I/71uu1LiyBlL.jpg",
+      "publisher": "T. Egerton, Whitehall",
+      "summary": "Pride and Prejudice is a Novel that explores themes of love, marriage, class, and societal expectations. It is told through the perspective of Elizabeth Bennet, a strong-willed and independent young woman who is determined to marry for love and not for money. The Novel has been beloved by readers for over two centuries, and has been adapted into numerous films, television shows, and stage productions.",
+      "isbn": "978-0486284736",
+      "genre": "Novel"
+    },
+    {
+        "title": "The Catcher in the Rye",
+        "description": "A controversial Novel about a teenage boy named Holden Caulfield who is expelled from his prep school and spends three days wandering around New York City.",
+        "authors": ["J. D. Salinger"],
+        "dateReleased": "July 16, 1951",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/81T2TtW8jNL.jpg",
+        "publisher": "Little, Brown and Company",
+        "summary": "The Catcher in the Rye is a Novel that explores themes of alienation, isolation, and identity. It is told in a first-person narrative by Holden Caulfield, a teenage boy who is struggling to find his place in the world. The Novel has become a cultural touchstone for many readers, and has been both celebrated and criticized for its frank depictions of teenage angst and rebellion.",
+        "isbn": "978-0316769488",
+        "genre": "Fiction"
+      },
+      {
+        "title": "The Great Gatsby",
+        "description": "A Novel set in the roaring twenties that follows the mysterious Jay Gatsby as he tries to win back his former love, the beautiful and married Daisy Buchanan.",
+        "authors": ["F. Scott Fitzgerald"],
+        "dateReleased": "April 10, 1925",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/41RNSX5BE5L._SX307_BO1,204,203,200_.jpg",
+        "publisher": "Charles Scribner's Sons",
+        "summary": "The Great Gatsby is a Novel that explores themes of love, wealth, and the American Dream. It is told through the perspective of Nick Carraway, a young man who becomes entangled in the lives of the wealthy elite in the Fictional town of West Egg, Long Island. The Novel is widely regarded as a masterpiece of American literature, and has been adapted into numerous films, television shows, and stage productions.",
+        "isbn": "978-0743273565",
+        "genre": "Fiction"
+      },
+      {
+        "title": "1984",
+        "description": "A dystopian Novel set in a totalitarian society in which the government has complete control over every aspect of people's lives.",
+        "authors": ["George Orwell"],
+        "dateReleased": "June 8, 1949",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/51yj4N1BT1L._SX310_BO1,204,203,200_.jpg",
+        "publisher": "Secker & Warburg",
+        "summary": "1984 is a Novel that explores themes of government control, surveillance, and the power of language. It is told through the perspective of Winston Smith, a low-ranking member of the ruling Party who begins to rebel against the oppressive regime. The Novel has had a profound impact on popular culture, and the term 'Big Brother' has become synonymous with government surveillance and control.",
+        "isbn": "978-0451524935",
+        "genre": "Fiction"
+      },
+      {
+        "title": "The 7 Habits of Highly Effective People",
+        "description": "A Self-help book that outlines seven habits that can help individuals become more effective in their personal and professional lives.",
+        "authors": ["Stephen R. Covey"],
+        "dateReleased": "August 15, 1989",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/51DiO-2I5vL._SX325_BO1,204,203,200_.jpg",
+        "publisher": "Free Press",
+        "summary": "The 7 Habits of Highly Effective People is a Self-help book that provides practical advice for individuals looking to improve their personal and professional lives. The book outlines seven habits that can help individuals become more effective, including being proactive, beginning with the end in mind, and seeking first to understand, then to be understood. The book has been widely praised for its practical advice and has sold millions of copies worldwide.",
+        "isbn": "978-0743269513",
+        "genre": "Self-help"
+      },
+      {
+        "title": "How to Win Friends and Influence People",
+        "description": "A Self-help book that provides practical advice on how to improve one's social skills and become more influential.",
+        "authors": ["Dale Carnegie"],
+        "dateReleased": "October 1936",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/51HrLZ5n5TL._SX319_BO1,204,203,200_.jpg",
+        "publisher": "Simon & Schuster",
+        "summary": "How to Win Friends and Influence People is a Self-help book that provides practical advice on how to improve one's social skills and become more influential. The book covers topics such as making people like you, winning people over to your way of thinking, and becoming a better leader. The book has been widely praised for its practical advice and has sold millions of copies worldwide.",
+        "isbn": "978-0671027032",
+        "genre": "Self-help"
+      },
+      {
+        "title": "The Power of Now",
+        "description": "A spiritual Self-help book that emphasizes the importance of living in the present moment.",
+        "authors": ["Eckhart Tolle"],
+        "dateReleased": "1997",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/41y0cVb-9BL._SX331_BO1,204,203,200_.jpg",
+        "publisher": "New World Library",
+        "summary": "The Power of Now is a spiritual Self-help book that emphasizes the importance of living in the present moment. The book encourages readers to let go of their attachment to past and future events and to focus on the present moment. The book has been widely praised for its spiritual insights and has become a bestseller.",
+        "isbn": "978-1577314806",
+        "genre": "Self-help"
+      },
+      {
+        "title": "The Lord of the Rings",
+        "description": "A high-Fantasy Novel that tells the story of hobbit Frodo Baggins and his quest to destroy the One Ring.",
+        "authors": ["J.R.R. Tolkien"],
+        "dateReleased": "July 29, 1954",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/51y9WQKWMNL._SX331_BO1,204,203,200_.jpg",
+        "publisher": "Allen & Unwin",
+        "summary": "The Lord of the Rings is a high-Fantasy Novel that tells the story of hobbit Frodo Baggins and his quest to destroy the One Ring. The Novel is set in the Fictional world of Middle-earth and is widely regarded as a classic of the Fantasy genre. The book has been adapted into several films and has sold millions of copies worldwide.",
+        "isbn": "978-0547928197",
+        "genre": "Fantasy"
+      },
+      {
+        "title": "A Game of Thrones",
+        "description": "A dark Fantasy Novel that tells the story of several noble houses vying for control of the Iron Throne.",
+        "authors": ["George R.R. Martin"],
+        "dateReleased": "August 1, 1996",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/51Z5aOZ4N4L._SX329_BO1,204,203,200_.jpg",
+        "publisher": "Bantam Spectra",
+        "summary": "A Game of Thrones is a dark Fantasy Novel that tells the story of several noble houses vying for control of the Iron Throne. The Novel is set in the Fictional world of Westeros and is known for its complex characters and political intrigue. The book has been adapted into a popular television series and has sold millions of copies worldwide.",
+        "isbn": "978-0553573404",
+        "genre": "Fantasy"
+      },
+      {
+        "title": "The Name of the Wind",
+        "description": "A high-Fantasy Novel that tells the story of Kvothe, a legendary wizard and musician.",
+        "authors": ["Patrick Rothfuss"],
+        "dateReleased": "March 27, 2007",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/41G+7T+8KzL._SX331_BO1,204,203,200_.jpg",
+        "publisher": "DAW Books",
+        "summary": "The Name of the Wind is a high-Fantasy Novel that tells the story of Kvothe, a legendary wizard and musician. The Novel is set in a world of magic and adventure and is known for its complex characters and intricate world-building. The book has won several awards and has become a bestseller.",
+        "isbn": "978-0756404741",
+        "genre": "Fantasy"
+      },
+      {
+        "title": "Becoming",
+        "description": "A memoir that tells the story of Michelle Obama's life, from her childhood in Chicago to her years in the White House as First Lady of the United States.",
+        "authors": ["Michelle Obama"],
+        "dateReleased": "November 13, 2018",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/81h2gWPTYJL.jpg",
+        "publisher": "Crown Publishing Group",
+        "summary": "Becoming is a memoir that tells the story of Michelle Obama's life, from her childhood in Chicago to her years in the White House as First Lady of the United States. The book is known for its honesty and intimacy, and has become a bestseller worldwide.",
+        "isbn": "978-1524763138",
+        "genre": "Autobiography"
+      },
+      {
+        "title": "Long Walk to Freedom",
+        "description": "An Autobiography that tells the story of Nelson Mandela's life, from his childhood in a rural village to his years as a political activist and leader of the anti-apartheid movement in South Africa.",
+        "authors": ["Nelson Mandela"],
+        "dateReleased": "1994",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/81ZQ2HvVcUL.jpg",
+        "publisher": "Little, Brown and Company",
+        "summary": "Long Walk to Freedom is an Autobiography that tells the story of Nelson Mandela's life, from his childhood in a rural village to his years as a political activist and leader of the anti-apartheid movement in South Africa. The book is known for its eloquence and inspirational message, and has become a classic of modern literature.",
+        "isbn": "978-0316548182",
+        "genre": "Autobiography"
+      },
+      {
+        "title": "I Know Why the Caged Bird Sings",
+        "description": "An Autobiography that tells the story of Maya Angelou's life, from her childhood in the American South to her years as a writer and civil rights activist.",
+        "authors": ["Maya Angelou"],
+        "dateReleased": "1969",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/81rL2QUTf9L.jpg",
+        "publisher": "Random House",
+        "summary": "I Know Why the Caged Bird Sings is an Autobiography that tells the story of Maya Angelou's life, from her childhood in the American South to her years as a writer and civil rights activist. The book is known for its powerful prose and exploration of themes such as identity, racism, and trauma, and has become a classic of American literature.",
+        "isbn": "978-0812980028",
+        "genre": "Autobiography"
+      },
+      {
+        "title": "The Intelligent Investor",
+        "description": "A classic Investment book that teaches the principles of value investing, written by Benjamin Graham, the father of value investing.",
+        "authors": ["Benjamin Graham"],
+        "dateReleased": "1949",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/91KlpZK-hSL.jpg",
+        "publisher": "Harper Business",
+        "summary": "The Intelligent Investor is a classic Investment book that teaches the principles of value investing, written by Benjamin Graham, the father of value investing. The book is known for its practical advice and timeless insights into the world of investing, and has influenced many successful investors such as Warren Buffett.",
+        "isbn": "978-0060555665",
+        "genre": "Investment"
+      },
+      {
+        "title": "Rich Dad Poor Dad",
+        "description": "A personal finance book that teaches the importance of financial education, written by Robert Kiyosaki.",
+        "authors": ["Robert Kiyosaki"],
+        "dateReleased": "1997",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/91VokXkn8hL.jpg",
+        "publisher": "Plata Publishing",
+        "summary": "Rich Dad Poor Dad is a personal finance book that teaches the importance of financial education, written by Robert Kiyosaki. The book is known for its simple yet powerful message about the difference between assets and liabilities, and has inspired many readers to take control of their finances.",
+        "isbn": "978-1612680194",
+        "genre": "Investment"
+      },
+      {
+        "title": "The Little Book of Common Sense Investing",
+        "description": "A guide to investing that promotes the benefits of low-cost index funds, written by John C. Bogle, the founder of Vanguard Group.",
+        "authors": ["John C. Bogle"],
+        "dateReleased": "2007",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/81vpsIs9D9L.jpg",
+        "publisher": "Wiley",
+        "summary": "The Little Book of Common Sense Investing is a guide to investing that promotes the benefits of low-cost index funds, written by John C. Bogle, the founder of Vanguard Group. The book is known for its simple yet effective message about the advantages of passive investing over active management, and has become a favorite among many long-term investors.",
+        "isbn": "978-0470102107",
+        "genre": "Investment"
+      },
+      {
+        "title": "The Selfish Gene",
+        "description": "A book that introduces the concept of the gene as the unit of natural selection, written by Richard Dawkins.",
+        "authors": ["Richard Dawkins"],
+        "dateReleased": "1976",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/71SPct9Bf-L.jpg",
+        "publisher": "Oxford University Press",
+        "summary": "The Selfish Gene is a book that introduces the concept of the gene as the unit of natural selection, written by Richard Dawkins. The book is known for its clear and accessible explanations of complex scientific concepts, and has been highly influential in the field of evolutionary biology.",
+        "isbn": "978-0198788607",
+        "genre": "Popular Science"
+      },
+      {
+        "title": "The Elegant Universe",
+        "description": "A book that explains the basics of string theory and its potential to unify the laws of physics, written by Brian Greene.",
+        "authors": ["Brian Greene"],
+        "dateReleased": "1999",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/91Mvj3qWozL.jpg",
+        "publisher": "Vintage",
+        "summary": "The Elegant Universe is a book that explains the basics of string theory and its potential to unify the laws of physics, written by Brian Greene. The book is known for its engaging and accessible explanations of complex scientific concepts, and has helped to popularize the idea of string theory.",
+        "isbn": "978-0393338102",
+        "genre": "Popular Science"
+      },
+      {
+        "title": "A Brief History of Time",
+        "description": "A book that explores the history and concepts of physics, written by Stephen Hawking.",
+        "authors": ["Stephen Hawking"],
+        "dateReleased": "1988",
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/71JmYlH4AfL.jpg",
+        "publisher": "Bantam",
+        "summary": "A Brief History of Time is a book that explores the history and concepts of physics, written by Stephen Hawking. The book is known for its clear and engaging explanations of complex scientific concepts, and has become a classic of Popular Science writing.",
+        "isbn": "978-0553380163",
+        "genre": "Popular Science"
+      }
+]
