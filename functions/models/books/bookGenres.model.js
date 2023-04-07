@@ -8,9 +8,9 @@ const bookGenresModel = mongoose.Schema({
   },
   genreId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'genres',
+    ref: 'bookgenre',
     required: true,
   },
 });
 
-module.exports = mongoose.model('bookGenres', bookGenresModel);
+module.exports = mongoose.model('genreforbook', bookGenresModel);
