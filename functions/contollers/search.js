@@ -17,7 +17,7 @@ const searchContent = async (req, res, next) => {
         $or: [{ title: { $regex: ".*" + searchTerm + ".*", $options: "i" } }],
       })
       .sort({ title: "ascending" });
-    const usersResult = await users
+    let usersResult = await users
       .find({
         $or: [
           { firstName: { $regex: ".*" + searchTerm + ".*", $options: "i" } },
@@ -31,6 +31,16 @@ const searchContent = async (req, res, next) => {
       })
       .sort({ title: "ascending" });
 
+    if (
+      searchTerm.trim() === "" ||
+      searchTerm.trim() === "null" ||
+      searchTerm === null
+    ) {
+      moviesResult = await movies.find().sort({ title: "ascending" });
+      usersResult = await users.find().sort({ firstName: "ascending" });
+      booksResult = await books.find().sort({ title: "ascending" });
+    }
+
     let watchlistResult = await watchlist.find({
       userId: currentUserId,
     });
@@ -40,14 +50,14 @@ const searchContent = async (req, res, next) => {
     });
 
     if (watchlistResult.length == 0) {
-      addInitialEmptyWatchlist(currentUserId);
+      await addInitialEmptyWatchlist(currentUserId);
       watchlistResult = await watchlist.find({
         userId: currentUserId,
       });
     }
 
     if (watchedResult.length == 0) {
-      addInitialEmptyWatched(currentUserId);
+      await addInitialEmptyWatched(currentUserId);
       watchedResult = await watched.find({
         userId: currentUserId,
       });
@@ -114,22 +124,22 @@ const searchContent = async (req, res, next) => {
   }
 };
 
-const addInitialEmptyWatchlist = (currentUserId) => {
+const addInitialEmptyWatchlist = async (currentUserId) => {
   let initialEmptyWatchlist = {
     userId: currentUserId,
     bookId: [],
     movieId: [],
   };
-  watchlist.insertMany(initialEmptyWatchlist);
+  await watchlist.insertMany(initialEmptyWatchlist);
 };
 
-const addInitialEmptyWatched = (currentUserId) => {
+const addInitialEmptyWatched = async (currentUserId) => {
   let initialEmptyWatched = {
     userId: currentUserId,
     bookId: [],
     movieId: [],
   };
-  watched.insertMany(initialEmptyWatched);
+  await watched.insertMany(initialEmptyWatched);
 };
 module.exports = {
   searchContent,
