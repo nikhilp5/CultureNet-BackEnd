@@ -5,7 +5,6 @@ const Movie = require('../models/movies/movies.model');
 exports.createMovie = async (req, res) => {
   try {
     const movie = new Movie(req.body);
-    console.log(req.body)
     await movie.save();
     res.status(201).json(movie);
   } catch (error) {
