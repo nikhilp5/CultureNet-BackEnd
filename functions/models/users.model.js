@@ -37,6 +37,14 @@ const usersModel = mongoose.Schema({
   codeExpiry: {
     type: Date,
   },
+  followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
 });
 
 module.exports = mongoose.model('users', usersModel);
