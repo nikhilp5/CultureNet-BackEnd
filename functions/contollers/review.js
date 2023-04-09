@@ -51,7 +51,6 @@ exports.deleteReview = async (req, res) => {
 exports.getAllReviews = async (req, res, next) => {
     try {
     const userId = req.data.user._id;
-    console.log("user id is: " + userId );
     const { contentId } = req.query
 
     if (contentId)
