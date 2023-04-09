@@ -20,8 +20,7 @@ const booksModel = mongoose.Schema({
     type: Date,
   },
   image: {
-    type: String,
-    trim: true,
+    type: Buffer
   }, 
   publisher: {
     type: String,
