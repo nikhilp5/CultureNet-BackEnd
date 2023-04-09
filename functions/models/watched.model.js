@@ -1,4 +1,4 @@
-const mongoose = require("../utils/dbConn");
+const mongoose = require('../utils/dbConn');
 
 const watchedModel = mongoose.Schema({
   userId: {
@@ -16,6 +16,11 @@ const watchedModel = mongoose.Schema({
     required: true,
     trim: true,
   },
+  musicId: {
+    type: [String],
+    required: true,
+    trim: true,
+  },
 });
 
-module.exports = mongoose.model("watcheds", watchedModel);
+module.exports = mongoose.model('watcheds', watchedModel);
