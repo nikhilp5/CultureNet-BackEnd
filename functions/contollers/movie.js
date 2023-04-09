@@ -43,7 +43,7 @@ exports.getMovieById = async (req, res) => {
   const { id } = req.params;
   try {
     const movie = await Movie.findById(id);
-    const currentUserId=req.headers.userid;
+    const currentUserId=req.data.user._id;
     //watchlist changes
     let updatedMovie=movie;
     let watchlistResult = await watchlist.find({

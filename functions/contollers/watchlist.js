@@ -29,7 +29,7 @@ const addInitialEmptyWatched = async (currentUserId) => {
 const addToWatchlist = async (req, res, next) => {
   try {
     if (req.body && req.body.type && req.body.content && req.body.userid) {
-      const currentUserId = req.body.userid.toString();
+      const currentUserId = req.data.user._id;
       let watchlistResult = await watchlist.find({
         userId: currentUserId,
       });
@@ -70,7 +70,7 @@ const addToWatchlist = async (req, res, next) => {
 const removeFromWatchlist = async (req, res, next) => {
   try {
     if (req.body && req.body.type && req.body.content && req.body.userid) {
-      const currentUserId = req.body.userid.toString();
+      const currentUserId = req.data.user._id;
       const watchlistResult = await watchlist.find({
         userId: currentUserId,
       });
@@ -149,7 +149,7 @@ const getWatchlist = async (req, res, next) => {
 const addToWatched = async (req, res, next) => {
   try {
     if (req.body && req.body.type && req.body.content && req.body.userid) {
-      const currentUserId = req.body.userid.toString();
+      const currentUserId = req.data.user._id;
       let watchedResult = await watched.find({
         userId: currentUserId,
       });
@@ -190,7 +190,7 @@ const addToWatched = async (req, res, next) => {
 const removeFromWatched = async (req, res, next) => {
   try {
     if (req.body && req.body.type && req.body.content && req.body.userid) {
-      const currentUserId = req.body.userid.toString();
+      const currentUserId = req.data.user._id;
       const watchedResult = await watched.find({
         userId: currentUserId,
       });

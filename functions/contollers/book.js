@@ -39,10 +39,10 @@ exports.getAllBooks = async (req, res) => {
 
   // Get Book by ID
 exports.getBookById = async (req, res) => {
-    const { id } = req.params;
+  const { id } = req.params;
     try {
       const book = await Book.findById(id);
-      const currentUserId=req.headers.userid;
+      const currentUserId=req.data.user._id;
     //watchlist changes
     let updatedBook=book;
     let watchlistResult = await watchlist.find({
