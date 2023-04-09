@@ -14,9 +14,11 @@ const bookRoute = require('./routes/bookRoute');
 const adminRoute = require('./routes/adminRoute');
 const errorHandler = require('./utils/errorHandler');
 const jsonParser = bodyParser.json({limit: '5mb'});
+const followRoute=require('./routes/followerFollowingRoute')
 
 app.use(cors());
 app.use(jsonParser);
+app.use("/.netlify/functions/api", followRoute);
 app.use('/.netlify/functions/api', searchWatchlistRoute);
 app.use('/.netlify/functions/api', movieRoute);
 app.use('/.netlify/functions/api', musicRoute);

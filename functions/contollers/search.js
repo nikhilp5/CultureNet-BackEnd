@@ -112,17 +112,6 @@ const searchContent = async (req, res, next) => {
       });
     });
 
-    let musicWatchlistContent = watchlistResult[0].musicId;
-    musicWatchlistContent.forEach((watchlistMusic) => {
-      musicResult.forEach((musicRes, index) => {
-        if (watchlistMusic.toString() === musicRes._id.toString()) {
-          let watchlist = true;
-          let music = { ...musicRes.toObject(), watchlist };
-          updatedMusicResults[index] = music;
-        }
-      });
-    });
-
     let movieWatchedContent = watchedResult[0].movieId;
     movieWatchedContent.forEach((watchedMovie) => {
       moviesResult.forEach((movieRes, index) => {
@@ -158,17 +147,6 @@ const searchContent = async (req, res, next) => {
           let music = { ...musicRes.toObject(), watched };
           updatedMusicResults[index] = music;
           updatedMusicResults[index]["image"]=bufferImg;
-        }
-      });
-    });
-
-    let musicWatchedContent = watchedResult[0].musicId;
-    musicWatchedContent.forEach((watchedMusic) => {
-      musicResult.forEach((musicRes, index) => {
-        if (watchedMusic.toString() === musicRes._id.toString()) {
-          let watched = true;
-          let music = { ...musicRes.toObject(), watched };
-          updatedMusicResults[index] = music;
         }
       });
     });
