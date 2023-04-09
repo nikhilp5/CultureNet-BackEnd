@@ -106,6 +106,7 @@ const addInitialEmptyWatchlist = async (currentUserId) => {
     userId: currentUserId,
     bookId: [],
     movieId: [],
+    musicId: [],
   };
   await watchlist.insertMany(initialEmptyWatchlist);
 };
@@ -115,6 +116,7 @@ const addInitialEmptyWatched = async (currentUserId) => {
     userId: currentUserId,
     bookId: [],
     movieId: [],
+    musicId: [],
   };
   await watched.insertMany(initialEmptyWatched);
 };
