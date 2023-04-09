@@ -10,6 +10,7 @@ const userRoute = require('./routes/userRoute');
 const movieRoute = require('./routes/movieRoute');
 const reviewRoute = require('./routes/reviewRoute');
 const bookRoute = require('./routes/bookRoute');
+const adminRoute = require("./routes/adminRoute");
 const errorHandler = require('./utils/errorHandler');
 const jsonParser = bodyParser.json();
 
@@ -20,6 +21,7 @@ app.use('/.netlify/functions/api', movieRoute);
 app.use('/.netlify/functions/api', bookRoute);
 app.use('/.netlify/functions/api', reviewRoute);
 app.use('/.netlify/functions/api', userRoute);
+app.use('/.netlify/functions/api', adminRoute);
 
 app.use('/.netlify/functions/api', errorHandler);
 
