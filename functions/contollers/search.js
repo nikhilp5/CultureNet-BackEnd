@@ -76,10 +76,12 @@ const searchContent = async (req, res, next) => {
     let movieWatchlistContent = watchlistResult[0].movieId;
     movieWatchlistContent.forEach((watchlistMovie) => {
       moviesResult.forEach((movieRes, index) => {
+        let bufferImg=movieRes.image;
         if (watchlistMovie.toString() === movieRes._id.toString()) {
           let watchlist = true;
           let movie = { ...movieRes.toObject(), watchlist };
           updatedMovieResults[index] = movie;
+          updatedMovieResults[index]["image"]=bufferImg;
         }
       });
     });
@@ -87,10 +89,25 @@ const searchContent = async (req, res, next) => {
     let bookWatchlistContent = watchlistResult[0].bookId;
     bookWatchlistContent.forEach((watchlistBook) => {
       booksResult.forEach((bookRes, index) => {
+        let bufferImg=bookRes.image;
         if (watchlistBook.toString() === bookRes._id.toString()) {
           let watchlist = true;
           let book = { ...bookRes.toObject(), watchlist };
           updatedBookResults[index] = book;
+          updatedBookResults[index]["image"]=bufferImg;
+        }
+      });
+    });
+
+    let musicWatchlistContent = watchlistResult[0].musicId;
+    musicWatchlistContent.forEach((watchlistMusic) => {
+      musicResult.forEach((musicRes, index) => {
+        let bufferImg=musicRes.image;
+        if (watchlistMusic.toString() === musicRes._id.toString()) {
+          let watchlist = true;
+          let music = { ...musicRes.toObject(), watchlist };
+          updatedMusicResults[index] = music;
+          updatedMusicResults[index]["image"]=bufferImg;
         }
       });
     });
@@ -109,10 +126,12 @@ const searchContent = async (req, res, next) => {
     let movieWatchedContent = watchedResult[0].movieId;
     movieWatchedContent.forEach((watchedMovie) => {
       moviesResult.forEach((movieRes, index) => {
+        let bufferImg=movieRes.image;
         if (watchedMovie.toString() === movieRes._id.toString()) {
           let watched = true;
           let movie = { ...movieRes.toObject(), watched };
           updatedMovieResults[index] = movie;
+          updatedMovieResults[index]["image"]=bufferImg;
         }
       });
     });
@@ -120,10 +139,25 @@ const searchContent = async (req, res, next) => {
     let bookWatchedContent = watchedResult[0].bookId;
     bookWatchedContent.forEach((watchedBook) => {
       booksResult.forEach((bookRes, index) => {
+        let bufferImg=bookRes.image;
         if (watchedBook.toString() === bookRes._id.toString()) {
           let watched = true;
           let book = { ...bookRes.toObject(), watched };
           updatedBookResults[index] = book;
+          updatedBookResults[index]["image"]=bufferImg;
+        }
+      });
+    });
+
+    let musicWatchedContent = watchedResult[0].musicId;
+    musicWatchedContent.forEach((watchedMusic) => {
+      musicResult.forEach((musicRes, index) => {
+        let bufferImg=musicRes.image;
+        if (watchedMusic.toString() === musicRes._id.toString()) {
+          let watched = true;
+          let music = { ...musicRes.toObject(), watched };
+          updatedMusicResults[index] = music;
+          updatedMusicResults[index]["image"]=bufferImg;
         }
       });
     });
