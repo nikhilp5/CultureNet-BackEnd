@@ -44,8 +44,6 @@ const fetchMusicById = async (req, res, next) => {
       });
     }
 
-    console.log(watchlistResult);
-
     let musicWatchlistContent = watchlistResult[0].musicId;
     musicWatchlistContent.forEach((watchlistBook) => {
       if (watchlistBook.toString() === music._id.toString()) {
