@@ -45,6 +45,7 @@ const fetchMusicById = async (req, res, next) => {
     }
 
     let musicWatchlistContent = watchlistResult[0].musicId;
+    let bufferImg=music.image;
     musicWatchlistContent.forEach((watchlistBook) => {
       if (watchlistBook.toString() === music._id.toString()) {
         let watchlist = true;
@@ -59,6 +60,7 @@ const fetchMusicById = async (req, res, next) => {
         updatedMusic = { ...music.toObject(), watched };
       }
     });
+    updatedMusic["image"]=bufferImg;
     res.json(updatedMusic);
   } catch (err) {
     console.error(err);

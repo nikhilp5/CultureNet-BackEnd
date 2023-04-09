@@ -69,6 +69,7 @@ exports.getMovieById = async (req, res) => {
     }
 
     let movieWatchlistContent = watchlistResult[0].movieId;
+    let bufferImg=movie.image;
     movieWatchlistContent.forEach((watchlistMovie) => {
         if (watchlistMovie.toString() === movie._id.toString()) {
           let watchlist = true;
@@ -83,7 +84,7 @@ exports.getMovieById = async (req, res) => {
           updatedMovie = { ...movie.toObject(), watched };
         }
     });
-    
+    updatedMovie["image"]=bufferImg;
     res.json(updatedMovie);
   } catch (error) {
     res.status(400).json({ message: error.message });
