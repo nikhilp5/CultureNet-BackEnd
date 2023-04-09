@@ -1,5 +1,7 @@
 const mongoose = require('../utils/dbConn');
 const Movie = require('../models/movies/movies.model');
+const watchlist = require("../models/watchlist.model");
+const watched = require("../models/watched.model");
 
 // Create a new movie
 exports.createMovie = async (req, res) => {
@@ -40,11 +42,50 @@ exports.deleteMovie = async (req, res) => {
 // View a movie by ID
 exports.getMovieById = async (req, res) => {
   const { id } = req.params;
-
   try {
     const movie = await Movie.findById(id);
+    const currentUserId=req.headers.userid;
+    //watchlist changes
+    let updatedMovie=movie;
+    let watchlistResult = await watchlist.find({
+      userId: currentUserId,
+    });
 
-    res.json(movie);
+    let watchedResult = await watched.find({
+      userId: currentUserId,
+    });
+
+    if (watchlistResult.length == 0) {
+      await addInitialEmptyWatchlist(currentUserId);
+      watchlistResult = await watchlist.find({
+        userId: currentUserId,
+      });
+    }
+
+    if (watchedResult.length == 0) {
+      await addInitialEmptyWatched(currentUserId);
+      watchedResult = await watched.find({
+        userId: currentUserId,
+      });
+    }
+
+    let movieWatchlistContent = watchlistResult[0].movieId;
+    movieWatchlistContent.forEach((watchlistMovie) => {
+        if (watchlistMovie.toString() === movie._id.toString()) {
+          let watchlist = true;
+          updatedMovie = { ...movie.toObject(), watchlist };
+        }
+    });
+
+    let movieWatchedContent = watchedResult[0].movieId;
+    movieWatchedContent.forEach((watchedMovie) => {
+        if (watchedMovie.toString() === movie._id.toString()) {
+          let watched = true;
+          updatedMovie = { ...movie.toObject(), watched };
+        }
+    });
+    
+    res.json(updatedMovie);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -58,4 +99,23 @@ exports.getAllMovies = async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
+};
+
+//watchlist changes
+const addInitialEmptyWatchlist = async (currentUserId) => {
+  let initialEmptyWatchlist = {
+    userId: currentUserId,
+    bookId: [],
+    movieId: [],
+  };
+  await watchlist.insertMany(initialEmptyWatchlist);
+};
+
+const addInitialEmptyWatched = async (currentUserId) => {
+  let initialEmptyWatched = {
+    userId: currentUserId,
+    bookId: [],
+    movieId: [],
+  };
+  await watched.insertMany(initialEmptyWatched);
 };
