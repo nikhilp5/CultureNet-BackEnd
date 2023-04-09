@@ -68,6 +68,7 @@ exports.getBookById = async (req, res) => {
     }
 
     let bookWatchlistContent = watchlistResult[0].bookId;
+    let bufferImg=book.image;
     bookWatchlistContent.forEach((watchlistBook) => {
         if (watchlistBook.toString() === book._id.toString()) {
           let watchlist = true;
@@ -82,6 +83,7 @@ exports.getBookById = async (req, res) => {
           updatedBook = { ...book.toObject(), watched };
         }
     });
+      updatedBook["image"]=bufferImg;
       res.json(updatedBook);
     } catch (error) {
       res.status(400).json({ message: error.message });

@@ -156,22 +156,35 @@ const getWatchlist = async (req, res, next) => {
         $in: watchlistResult[0].musicId,
       },
     });
-    moviesResult = moviesResult.map((item) => ({
-      ...item.toObject(),
-      watchlist: true,
-    }));
-    booksResult = booksResult.map((item) => ({
-      ...item.toObject(),
-      watchlist: true,
-    }));
-    musicResult = musicResult.map((item) => ({
-      ...item.toObject(),
-      watchlist: true,
-    }));
+    let updatedMovieResults = moviesResult;
+    let updatedBookResults = booksResult;
+    let updatedMusicResults = musicResult;
+
+    moviesResult.forEach((movieRes, index) => {
+      let bufferImg=movieRes.image;
+        let watchlist = true;
+        let movie = { ...movieRes.toObject(), watchlist };
+        updatedMovieResults[index] = movie;
+        updatedMovieResults[index]["image"]=bufferImg;
+    });
+    booksResult.forEach((bookRes, index) => {
+      let bufferImg=bookRes.image;
+        let watchlist = true;
+        let book = { ...bookRes.toObject(), watchlist };
+        updatedBookResults[index] = book;
+        updatedBookResults[index]["image"]=bufferImg;
+    });
+    musicResult.forEach((musicRes, index) => {
+      let bufferImg=musicRes.image;
+        let watchlist = true;
+        let music = { ...musicRes.toObject(), watchlist };
+        updatedMusicResults[index] = music;
+        updatedMusicResults[index]["image"]=bufferImg;
+    });
     const finalResult = {
-      movies: moviesResult,
-      books: booksResult,
-      music: musicResult,
+      movies: updatedMovieResults,
+      books: updatedBookResults,
+      music: updatedMusicResults,
     };
     res.status(200).json({
       success: true,
@@ -310,22 +323,35 @@ const getWatched = async (req, res, next) => {
         $in: watchedResult[0].musicId,
       },
     });
-    moviesResult = moviesResult.map((item) => ({
-      ...item.toObject(),
-      watched: true,
-    }));
-    booksResult = booksResult.map((item) => ({
-      ...item.toObject(),
-      watched: true,
-    }));
-    musicResult = musicResult.map((item) => ({
-      ...item.toObject(),
-      watched: true,
-    }));
+    let updatedMovieResults = moviesResult;
+    let updatedBookResults = booksResult;
+    let updatedMusicResults = musicResult;
+
+    moviesResult.forEach((movieRes, index) => {
+      let bufferImg=movieRes.image;
+        let watched = true;
+        let movie = { ...movieRes.toObject(), watched };
+        updatedMovieResults[index] = movie;
+        updatedMovieResults[index]["image"]=bufferImg;
+    });
+    booksResult.forEach((bookRes, index) => {
+      let bufferImg=bookRes.image;
+        let watched = true;
+        let book = { ...bookRes.toObject(), watched };
+        updatedBookResults[index] = book;
+        updatedBookResults[index]["image"]=bufferImg;
+    });
+    musicResult.forEach((musicRes, index) => {
+      let bufferImg=musicRes.image;
+        let watched = true;
+        let music = { ...musicRes.toObject(), watched };
+        updatedMusicResults[index] = music;
+        updatedMusicResults[index]["image"]=bufferImg;
+    });
     const finalResult = {
-      movies: moviesResult,
-      books: booksResult,
-      music: musicResult,
+      movies: updatedMovieResults,
+      books: updatedBookResults,
+      music: updatedMusicResults,
     };
     res.status(200).json({
       success: true,
