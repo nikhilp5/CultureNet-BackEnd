@@ -12,7 +12,7 @@ const reviewRoute = require('./routes/reviewRoute');
 const bookRoute = require('./routes/bookRoute');
 const adminRoute = require("./routes/adminRoute");
 const errorHandler = require('./utils/errorHandler');
-const jsonParser = bodyParser.json();
+const jsonParser = bodyParser.json({limit: '5mb'});
 
 app.use(cors());
 app.use(jsonParser);

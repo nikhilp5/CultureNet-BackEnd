@@ -17,12 +17,12 @@ const {
 } = require("../contollers/watchlist");
 const { verifyToken } = require("../contollers/user");
 
-searchWatchlistRoute.route("/search/:searchterm/:userid").get(verifyToken,searchContent);
+searchWatchlistRoute.route("/search/:searchterm").get(verifyToken,searchContent);
 searchWatchlistRoute.route("/addToWatchlist").post(verifyToken,addToWatchlist);
 searchWatchlistRoute.route("/removeFromWatchlist").post(verifyToken,removeFromWatchlist);
-searchWatchlistRoute.route("/getWatchlist/:userid").get(verifyToken,getWatchlist);
+searchWatchlistRoute.route("/getWatchlist").get(verifyToken,getWatchlist);
 searchWatchlistRoute.route("/addToWatched").post(verifyToken,addToWatched);
 searchWatchlistRoute.route("/removeFromWatched").post(verifyToken,removeFromWatched);
-searchWatchlistRoute.route("/getWatched/:userid").get(verifyToken,getWatched);
+searchWatchlistRoute.route("/getWatched").get(verifyToken,getWatched);
 
 module.exports = searchWatchlistRoute;

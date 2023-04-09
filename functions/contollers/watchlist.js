@@ -104,7 +104,7 @@ const removeFromWatchlist = async (req, res, next) => {
 
 const getWatchlist = async (req, res, next) => {
   try {
-    const currentUserId = req.params.userid.toString();
+    const currentUserId = req.data.user._id;
     let watchlistResult = await watchlist.find({
       userId: currentUserId,
     });
@@ -224,7 +224,7 @@ const removeFromWatched = async (req, res, next) => {
 
 const getWatched = async (req, res, next) => {
   try {
-    const currentUserId = req.params.userid.toString();
+    const currentUserId = req.data.user._id;
     let watchedResult = await watched.find({
       userId: currentUserId,
     });
