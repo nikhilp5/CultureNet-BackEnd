@@ -1,3 +1,5 @@
+//Author-Nikhil Panikkassery (B00934514)
+
 const getError = require("../utils/getError");
 const movies = require("../models/movies/movies.model");
 const users = require("../models/users.model");
@@ -6,22 +8,22 @@ const watchlist = require("../models/watchlist.model");
 const mongoose = require("../utils/dbConn");
 const watched = require("../models/watched.model");
 
-const addInitialEmptyWatchlist = (currentUserId) => {
+const addInitialEmptyWatchlist = async (currentUserId) => {
   let initialEmptyWatchlist = {
     userId: currentUserId,
     bookId: [],
     movieId: [],
   };
-  watchlist.insertMany(initialEmptyWatchlist);
+  await watchlist.insertMany(initialEmptyWatchlist);
 };
 
-const addInitialEmptyWatched = (currentUserId) => {
+const addInitialEmptyWatched = async (currentUserId) => {
   let initialEmptyWatched = {
     userId: currentUserId,
     bookId: [],
     movieId: [],
   };
-  watched.insertMany(initialEmptyWatched);
+  await watched.insertMany(initialEmptyWatched);
 };
 
 const addToWatchlist = async (req, res, next) => {
@@ -32,7 +34,7 @@ const addToWatchlist = async (req, res, next) => {
         userId: currentUserId,
       });
       if (watchlistResult.length == 0) {
-        addInitialEmptyWatchlist(currentUserId);
+        await addInitialEmptyWatchlist(currentUserId);
         watchlistResult = await watchlist.find({
           userId: currentUserId,
         });
@@ -107,7 +109,7 @@ const getWatchlist = async (req, res, next) => {
       userId: currentUserId,
     });
     if (watchlistResult.length == 0) {
-      addInitialEmptyWatchlist(currentUserId);
+      await addInitialEmptyWatchlist(currentUserId);
       watchlistResult = await watchlist.find({
         userId: currentUserId,
       });
@@ -152,7 +154,7 @@ const addToWatched = async (req, res, next) => {
         userId: currentUserId,
       });
       if (watchedResult.length == 0) {
-        addInitialEmptyWatched(currentUserId);
+        await addInitialEmptyWatched(currentUserId);
         watchedResult = await watched.find({
           userId: currentUserId,
         });
@@ -227,7 +229,7 @@ const getWatched = async (req, res, next) => {
       userId: currentUserId,
     });
     if (watchedResult.length == 0) {
-      addInitialEmptyWatched(currentUserId);
+      await addInitialEmptyWatched(currentUserId);
       watchedResult = await watched.find({
         userId: currentUserId,
       });

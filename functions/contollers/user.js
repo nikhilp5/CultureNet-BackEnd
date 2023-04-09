@@ -102,7 +102,10 @@ const forgotPassword = async (req, res, next) => {
       await sendEmail(
         email,
         `CultureNet - Password Reset Code - ${code}`,
-        'Enter the code below to reset the password:' + '\n' + code,
+        'Enter the code below to reset the password:' +
+          '\n' +
+          code +
+          '\nThis code is valid for 10 minutes.',
       );
 
       var user = await User.findOneAndUpdate(

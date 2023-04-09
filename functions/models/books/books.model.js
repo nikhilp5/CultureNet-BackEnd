@@ -22,7 +22,24 @@ const booksModel = mongoose.Schema({
   image: {
     type: String,
     trim: true,
+  }, 
+  publisher: {
+    type: String,
+    trim: true
   },
+  summary: {
+    type: String,
+    text: true,
+    trim: true
+  },
+  isbn: {
+    type: String,
+    trim: true
+  },
+  genre: {
+    type: String,
+    trim: true
+  }
 });
 
 module.exports = mongoose.model('books', booksModel);

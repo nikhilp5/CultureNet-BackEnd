@@ -1,3 +1,5 @@
+//Author-Nikhil Panikkassery (B00934514)
+
 const mongoose = require("../utils/dbConn");
 
 const watchlistModel = mongoose.Schema({
