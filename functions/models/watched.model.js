@@ -1,8 +1,6 @@
-//Author-Nikhil Panikkassery (B00934514)
-
 const mongoose = require('../utils/dbConn');
 
-const watchlistModel = mongoose.Schema({
+const watchedModel = mongoose.Schema({
   userId: {
     type: String,
     required: true,
@@ -25,4 +23,4 @@ const watchlistModel = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('watchlists', watchlistModel);
+module.exports = mongoose.model('watcheds', watchedModel);

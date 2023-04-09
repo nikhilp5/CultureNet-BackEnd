@@ -10,12 +10,15 @@ const HASH_ROUNDS = 15;
 const register = async (req, res, next) => {
   try {
     if (
-      req.body &&
+      Object.keys(req.body).length > 0 &&
+      req.body.firstName &&
+      req.body.lastName &&
       req.body.email &&
       req.body.password &&
       req.body.confirmPassword
     ) {
-      const { email, password, confirmPassword } = req.body;
+      const { firstName, lastName, email, password, confirmPassword } =
+        req.body;
       if (password !== confirmPassword) {
         throw getError(400, 'Passwords do not match');
       }
@@ -29,6 +32,8 @@ const register = async (req, res, next) => {
         throw getError(500, 'Error in password hashing');
       }
       const user = new User({
+        firstName,
+        lastName,
         email,
         password: passwordHash,
       });
@@ -54,8 +59,12 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    if (req.body && req.body.email && req.body.password) {
+    if (
+      Object.keys(req.body).length > 0 &&
+      req.body.email &&
+      req.body.password
+    ) {
+      const { email, password } = req.body;
       const targetRecord = await User.findOne({
         email,
       });
@@ -67,10 +76,8 @@ const login = async (req, res, next) => {
             message: 'Login successful',
             success: true,
             token,
-            email,
-            id: targetRecord._id,
+            user: targetRecord,
           });
-      
         } else {
           throw getError(401, 'Invalid credentials');
         }
@@ -88,14 +95,17 @@ const login = async (req, res, next) => {
 
 const forgotPassword = async (req, res, next) => {
   try {
-    const { email } = req.body;
-    if (req.body && req.body.email) {
+    if (Object.keys(req.body).length > 0 && req.body.email) {
+      const { email } = req.body;
       const code = Math.floor(100000 + Math.random() * 900000);
 
       await sendEmail(
         email,
         `CultureNet - Password Reset Code - ${code}`,
-        'Enter the code below to reset the password:' + '\n' + code,
+        'Enter the code below to reset the password:' +
+          '\n' +
+          code +
+          '\nThis code is valid for 10 minutes.',
       );
 
       var user = await User.findOneAndUpdate(
@@ -124,7 +134,7 @@ const forgotPassword = async (req, res, next) => {
 
 const resetPassword = async (req, res, next) => {
   try {
-    if (req.body && req.body.code && req.body.email) {
+    if (Object.keys(req.body).length > 0 && req.body.code && req.body.email) {
       const { email, code } = req.body;
 
       const targetRecord = await User.findOne({
@@ -156,8 +166,13 @@ const resetPassword = async (req, res, next) => {
 
 const changePassword = async (req, res, next) => {
   try {
-    if (req.body.email && req.body.password && req.body.confirmPassword) {
-      const { email, password, confirmPassword } = req.body;
+    if (
+      Object.keys(req.body).length > 0 &&
+      req.body.password &&
+      req.body.confirmPassword
+    ) {
+      const { password, confirmPassword } = req.body;
+      const { email } = req.data.user;
       if (password !== confirmPassword) {
         throw getError(400, 'Passwords do not match');
       }
@@ -197,20 +212,16 @@ const changePassword = async (req, res, next) => {
 
 const getUserProfile = async (req, res, next) => {
   try {
-    if (req.body && req.body.email) {
-      const { email } = req.body;
-      const user = await User.findOne({ email });
-      if (user) {
-        res.json({
-          message: 'User found',
-          success: true,
-          user,
-        });
-      } else {
-        throw getError(404, 'User not found');
-      }
+    const { email } = req.data.user;
+    const user = await User.findOne({ email });
+    if (user) {
+      res.json({
+        message: 'User found',
+        success: true,
+        user,
+      });
     } else {
-      throw getError(400, 'Invalid or missing body paramaters');
+      throw getError(404, 'User not found');
     }
   } catch (err) {
     console.log(err);
@@ -220,8 +231,9 @@ const getUserProfile = async (req, res, next) => {
 
 const updateUserProfile = async (req, res, next) => {
   try {
-    if (req.body && req.body.email) {
-      const { email, firstName, lastName, bio, nsfw } = req.body;
+    if (Object.keys(req.body).length > 0) {
+      const { firstName, lastName, bio, nsfw } = req.body;
+      const { email } = req.data.user;
       var user = await User.findOneAndUpdate(
         { email },
         { firstName, lastName, bio, nsfw },
@@ -254,10 +266,11 @@ const verifyToken = async (req, res, next) => {
       throw getError(401, 'User unauthorized');
     }
     token = token.split(' ')[1];
-    const isVerified = await jwtUtil.verifyJWT(token);
-    if (!isVerified.verify) {
+    const decodedJwt = await jwtUtil.verifyJWT(token);
+    if (!decodedJwt.verify) {
       throw getError(401, 'Token expired or invalid');
     }
+    req.data = decodedJwt.data;
     next();
   } catch (err) {
     console.log(err);

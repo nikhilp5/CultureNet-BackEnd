@@ -20,9 +20,25 @@ const booksModel = mongoose.Schema({
     type: Date,
   },
   image: {
+    type: Buffer
+  }, 
+  publisher: {
     type: String,
-    trim: true,
+    trim: true
   },
+  summary: {
+    type: String,
+    text: true,
+    trim: true
+  },
+  isbn: {
+    type: String,
+    trim: true
+  },
+  genre: {
+    type: String,
+    trim: true
+  }
 });
 
 module.exports = mongoose.model('books', booksModel);

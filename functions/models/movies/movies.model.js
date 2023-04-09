@@ -15,8 +15,7 @@ const moviesModel = mongoose.Schema({
     type: Date,
   },
   image: {
-    type: String,
-    trim: true,
+    type: Buffer,
   },
   director: {
     type: String,
