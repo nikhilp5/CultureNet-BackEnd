@@ -11,7 +11,7 @@ const watched = require("../models/watched.model");
 const searchContent = async (req, res, next) => {
   try {
     const searchTerm = req.params.searchterm;
-    const currentUserId = req.params.userid.toString();
+    const currentUserId = req.data.user._id;
     let moviesResult = await movies
       .find({
         $or: [{ title: { $regex: ".*" + searchTerm + ".*", $options: "i" } }],

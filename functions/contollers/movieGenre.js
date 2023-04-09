@@ -1,4 +1,4 @@
-const mongoose  = require('../utils/dbConn');
+const mongoose = require('../utils/dbConn');
 const Genre = require('../models/movies/Genre.model');
 
 // Get all genres
@@ -45,7 +45,7 @@ exports.updateGenreById = async (req, res) => {
     const updatedGenre = await Genre.findByIdAndUpdate(
       id,
       { name },
-      { new: true }
+      { new: true },
     );
     if (!updatedGenre) {
       return res.status(404).json({ message: 'Genre not found' });
@@ -71,15 +71,18 @@ exports.deleteGenreById = async (req, res) => {
 };
 
 exports.getGenresByIds = async (req, res) => {
-    try {
-      const genreIds = req.params.genreIds.split(',');
-      console.log(genreIds)
-      const genres = await Genre.find({_id: {$in: genreIds.map(id => mongoose.Types.ObjectId.createFromHexString(id))}});
-      console.log(genres)
+  try {
+    const genreIds = req.params.genreIds.split(',');
+    const genres = await Genre.find({
+      _id: {
+        $in: genreIds.map((id) =>
+          mongoose.Types.ObjectId.createFromHexString(id),
+        ),
+      },
+    });
     res.status(200).json(genres);
-      
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server Error' });
-    }
-  };
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};

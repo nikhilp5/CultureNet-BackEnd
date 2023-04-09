@@ -7,7 +7,6 @@ const watched = require("../models/watched.model");
 exports.createMovie = async (req, res) => {
   try {
     const movie = new Movie(req.body);
-    console.log(req.body)
     await movie.save();
     res.status(201).json(movie);
   } catch (error) {
@@ -44,7 +43,7 @@ exports.getMovieById = async (req, res) => {
   const { id } = req.params;
   try {
     const movie = await Movie.findById(id);
-    const currentUserId=req.headers.userid;
+    const currentUserId=req.data.user._id;
     //watchlist changes
     let updatedMovie=movie;
     let watchlistResult = await watchlist.find({

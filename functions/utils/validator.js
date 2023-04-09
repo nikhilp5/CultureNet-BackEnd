@@ -21,6 +21,9 @@ const validator = (reqBody) => {
   if (reqBody.firstName && !reqBody.firstName.match(firstNameRegex)) {
     throw getError(400, 'Invalid or missing body paramaters');
   }
+  if (reqBody.lastName && !reqBody.lastName.match(firstNameRegex)) {
+    throw getError(400, 'Invalid or missing body paramaters');
+  }
 };
 
 module.exports = validator;
