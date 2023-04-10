@@ -110,8 +110,8 @@ exports.getAllReviews = async (req, res, next) => {
 exports.getUserReviews = async (req, res) => {
     let userId;
 
-    if (req.query.userId){
-        userId = req.query.userId;
+    if (req.params.id){
+        userId = req.params.id;
     }
     else {
         userId = req.data.user._id;
