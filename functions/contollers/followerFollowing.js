@@ -99,3 +99,60 @@ exports.unfollowUser = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+exports.getAllFollowers = async (req, res) => {
+  try {
+    const userId = req.data.user._id;
+    const user = await User.findById(userId).populate('email');
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const followers = user.followers || [];
+
+    const followerIds = followers.map(follower => {
+      const id = follower;
+      return id;
+    });
+
+    const users = await User.find({ _id: { $in: followerIds } }, 'firstName lastName');
+
+    const response = {
+      followers: users
+    };
+
+    res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+exports.getAllFollowing = async (req, res) => {
+  try {
+    const userId=req.data.user._id
+    const user = await User.findById(userId).populate('email')
+
+     if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }    const following= user.following || [];
+  
+    const followingIds = following.map(following => {
+       const id=following;
+       return id
+    });
+
+    const users = await User.find({ _id: { $in: followingIds } }, 'firstName lastName');
+
+    const response = {
+      following: users
+    };
+
+    res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
