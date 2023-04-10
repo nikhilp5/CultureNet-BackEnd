@@ -1,14 +1,39 @@
 const mongoose = require('../utils/dbConn');
 const Review = require('../models/review.model');
+const Book = require('../models/books/books.model')
+
+
+const updateReviewersRatingInBook = async (contentId, newRating, oldRating, isCreate) => {
+    try {
+        const book = await Book.findById(contentId);
+        if(isCreate){
+            book.reviewers = book.reviewers + 1;
+            book.totalRatings = book.totalRatings + newRating;
+        }
+        else {
+            book.totalRatings = (book.totalRatings - oldRating) + newRating;
+        }
+        await book.save();
+        
+    } catch (error) {
+        console.log("The book Ratings cannot be updated!");
+    }
+    
+}
 
 // Create a new Content review
 exports.createReview = async (req, res) => {
     try {
         const userId = req.data.user._id;
         req.body['userId'] = userId;
+        req.body.userName = (req.data.user.firstName + req.data.user.lastName) ? !req.body.userName : req.body.userName;
 
         const review = new Review(req.body);
+
         await review.save();
+
+        updateReviewersRatingInBook(req.body.contentId, req.body.rating, review.rating, true);
+
         res.status(201).json(review);
     
         } catch (error) {
@@ -26,7 +51,10 @@ exports.updateReview = async (req, res) => {
     const query = { _id: id, userId: userId };
 
     try {
-        const review = await Review.findByIdAndUpdate(query, req.body, { new: true });
+        const review = await Review.findByIdAndUpdate(query, req.body, { new: false });
+
+        updateReviewersRatingInBook(review.contentId, req.body.rating, review.rating, false);
+        
         res.json(review);
     } catch (error) {
         res.status(400).json({ message: error.message });
