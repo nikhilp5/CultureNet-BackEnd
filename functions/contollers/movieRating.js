@@ -1,6 +1,6 @@
 const MovieRating = require('../models/movies/movieRatings.model');
 
-const  mongoose  = require('../utils/dbConn');
+const mongoose = require('../utils/dbConn');
 // Create a new movie rating
 exports.createMovieRating = async (req, res) => {
   try {
@@ -31,17 +31,13 @@ exports.createMovieRating = async (req, res) => {
   }
 };
 
-
 // Get the average rating for a particular movie
-
 
 exports.getMovieRating = async (req, res) => {
   try {
     const movieId = req.params.id;
-    const movieID=mongoose.Types.ObjectId.createFromHexString(movieId);
+    const movieID = mongoose.Types.ObjectId.createFromHexString(movieId);
 
-    console.log(movieID);
-    
     const aggregateResult = await MovieRating.aggregate([
       {
         $match: {
@@ -62,33 +58,28 @@ exports.getMovieRating = async (req, res) => {
   }
 };
 
-
 exports.getUserMovieRating = async (req, res) => {
-    try {
-      const { userId, movieId } = req.params;
-      console.log(typeof userId, typeof movieId);
-      const user='6424fbfd655f8005ee60191e';
-      const movie='64272f787aacbbd01b0e0339';
-      console.log(mongoose.Types.ObjectId.createFromHexString(userId))
-      console.log(mongoose.Types.ObjectId.createFromHexString(movieId))
-  
-      if (!mongoose.Types.ObjectId.isValid(user) && !mongoose.Types.ObjectId.isValid(movie)) {
-        return res.status(400).json({ message: 'Invalid id format' });
-      }
-  
-      const movieRating = await MovieRating.findOne({
-        userId: mongoose.Types.ObjectId.createFromHexString(userId),
-        movieId: mongoose.Types.ObjectId.createFromHexString(movieId),
-      });
-  
-      const rating = movieRating ? movieRating.rating : 0;
-  
-      res.status(200).json({ rating });
-    } catch (error) {
-      res.status(500).json({ message: error.message });
+  try {
+    const { userId, movieId } = req.params;
+    const user = '6424fbfd655f8005ee60191e';
+    const movie = '64272f787aacbbd01b0e0339';
+
+    if (
+      !mongoose.Types.ObjectId.isValid(user) &&
+      !mongoose.Types.ObjectId.isValid(movie)
+    ) {
+      return res.status(400).json({ message: 'Invalid id format' });
     }
-  };
-  
 
+    const movieRating = await MovieRating.findOne({
+      userId: mongoose.Types.ObjectId.createFromHexString(userId),
+      movieId: mongoose.Types.ObjectId.createFromHexString(movieId),
+    });
 
-  
+    const rating = movieRating ? movieRating.rating : 0;
+
+    res.status(200).json({ rating });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

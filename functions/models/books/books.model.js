@@ -20,8 +20,7 @@ const booksModel = mongoose.Schema({
     type: Date,
   },
   image: {
-    type: String,
-    trim: true,
+    type: Buffer
   }, 
   publisher: {
     type: String,
@@ -39,7 +38,16 @@ const booksModel = mongoose.Schema({
   genre: {
     type: String,
     trim: true
+  },
+  reviewers: {
+    type: Number,
+    default: 0
+  },
+  totalRatings: {
+    type: Number,
+    default: 0
   }
+
 });
 
 module.exports = mongoose.model('books', booksModel);

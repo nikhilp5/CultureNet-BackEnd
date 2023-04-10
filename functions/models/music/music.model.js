@@ -1,4 +1,4 @@
-const mongoose = require('../utils/dbConn');
+const mongoose = require('../../utils/dbConn');
 
 const musicModel = mongoose.Schema({
   title: {
@@ -8,6 +8,11 @@ const musicModel = mongoose.Schema({
   },
   artists: {
     type: [String],
+    required: true,
+    trim: true,
+  },
+  album: {
+    type: String,
     required: true,
     trim: true,
   },

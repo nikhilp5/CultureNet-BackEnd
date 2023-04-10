@@ -1,0 +1,38 @@
+[
+    {
+        "userId": "642f41bcf60a47b937df041d",
+        "userName": "User 1",
+        "contentId": "642f2f8daed6e7a3be60d1b7",
+        "rating": 2.5,
+        "totalRating": 5,
+        "comment": "This is wonderful book for anyone who is new to reading and wants to finish something short to get started.",
+        "category": "books"
+    },
+    {
+        "userId": "642a4cb0d1f415a7787c269a",
+        "userName": "User 2",
+        "contentId": "642f2f8daed6e7a3be60d1b7",
+        "rating": 3,
+        "totalRating": 5,
+        "comment": "This is wonderful book for anyone who is new to reading and wants to finish something short to get started.",
+        "category": "books"
+    },
+    {
+        "userId": "642a47d9f917c69edb58bf44",
+        "userName": "User 3",
+        "contentId": "642f2f8daed6e7a3be60d1b7",
+        "rating": 4,
+        "totalRating": 5,
+        "comment": "This is wonderful book for anyone who is new to reading and wants to finish something short to get started.",
+        "category": "books"
+    },
+    {
+        "userId": "642ba32465d0a708e854d4d7",
+        "userName": "User 4",
+        "contentId": "642f2f8daed6e7a3be60d1b7",
+        "rating": 5,
+        "totalRating": 5,
+        "comment": "This is wonderful book for anyone who is new to reading and wants to finish something short to get started.",
+        "category": "books"
+    }
+]

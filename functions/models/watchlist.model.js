@@ -1,6 +1,6 @@
 //Author-Nikhil Panikkassery (B00934514)
 
-const mongoose = require("../utils/dbConn");
+const mongoose = require('../utils/dbConn');
 
 const watchlistModel = mongoose.Schema({
   userId: {
@@ -18,6 +18,11 @@ const watchlistModel = mongoose.Schema({
     required: true,
     trim: true,
   },
+  musicId: {
+    type: [String],
+    required: true,
+    trim: true,
+  },
 });
 
-module.exports = mongoose.model("watchlists", watchlistModel);
+module.exports = mongoose.model('watchlists', watchlistModel);

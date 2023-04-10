@@ -1,7 +1,6 @@
 //Author - Rishi Vasa (B00902815)
 
 const getError = require("../utils/getError");
-const movies = require("../models/movies/movies.model");
 const mongoose = require("../utils/dbConn");
 const Movie = require("../models/movies/movies.model")
 
@@ -49,7 +48,7 @@ const addMovie = async (req, res, next) => {
 const updateMovie = async (req, res, next) => {
     try {
         const { movieID } = req.params;
-        console.log("Request received to updateMovie " + movieID + ": " + JSON.stringify(req.body));
+        console.log("Request received to updateMovie " + movieID);
 
         const title = req.body.title;
         const description = req.body.description;
@@ -104,7 +103,7 @@ const deleteMovie = async (req, res, next) => {
         const { movieID } = req.params;
         console.log("Request received to deleteMovie " + movieID);
 
-        const movie = await movies.findOneAndDelete({ _id: movieID });
+        const movie = await Movie.findOneAndDelete({ _id: movieID });
         if (!movie) {
             return res.status(404).json({ success: false, message: 'Movie not found' });
         }

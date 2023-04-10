@@ -11,19 +11,23 @@ const {
   updateUserProfile,
   verifyToken,
   resetPassword,
+  getUserProfileByID,
 } = require('../contollers/user');
 
 router.route('/register').post(register);
 router.route('/login').post(login);
 router.route('/forgotpassword').post(forgotPassword);
+router.route('/verifycode').post(resetPassword);
 router.route('/changepassword').put(verifyToken, changePassword);
-router.route('/profile').post(verifyToken, getUserProfile);
-router.route('/resetpassword').post(resetPassword);
-router.route('/updateprofile').put(verifyToken, updateUserProfile);
+router
+  .route('/profile')
+  .get(verifyToken, getUserProfile)
+  .put(verifyToken, updateUserProfile);
+
+router.route('/profile/:id').get(verifyToken, getUserProfileByID);
+
 router.get('/', (req, res, next) => {
-  res.send(
-    '<h1>Boilerplate</h1>GET /user/:id<br/><br/>POST /add<br/> &nbsp; body data: {email: “xyz@xyz.ca”, firstName: “XYZ”}',
-  );
+  res.send('Health OK');
 });
 router.get('/*', (req, res, next) => {
   res.send('<h1>Page Not Found</h1>');
