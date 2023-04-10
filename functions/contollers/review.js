@@ -26,7 +26,6 @@ exports.createReview = async (req, res) => {
     try {
         const userId = req.data.user._id;
         req.body['userId'] = userId;
-        req.body.userName = (req.data.user.firstName + req.data.user.lastName) ? !req.body.userName : req.body.userName;
 
         const review = new Review(req.body);
 
@@ -103,5 +102,25 @@ exports.getAllReviews = async (req, res, next) => {
 
     } catch (error) {
     res.status(400).json({ message: error.message });
+    }
+};
+
+
+// Get all reviews for a User (query parameters is given preference or else logged-in user)
+exports.getUserReviews = async (req, res) => {
+    let userId;
+
+    if (req.query.userId){
+        userId = req.query.userId;
+    }
+    else {
+        userId = req.data.user._id;
+    }
+
+    try {
+        const userReviews = await Review.find({ userId: userId })
+        res.json(userReviews);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
 };

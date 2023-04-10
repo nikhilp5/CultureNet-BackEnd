@@ -11,5 +11,6 @@ router.get('/reviews', verifyToken, reviewController.getAllReviews);
 router.post('/reviews', verifyToken, jsonParser, reviewController.createReview);
 router.put('/reviews/:id', verifyToken, jsonParser, reviewController.updateReview);
 router.delete('/reviews/:id', verifyToken, reviewController.deleteReview);
+router.get('/user_reviews', verifyToken, reviewController.getUserReviews);
 
 module.exports = router;
