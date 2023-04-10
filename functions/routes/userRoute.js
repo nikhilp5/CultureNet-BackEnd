@@ -11,6 +11,7 @@ const {
   updateUserProfile,
   verifyToken,
   resetPassword,
+  getUserProfileByID,
 } = require('../contollers/user');
 
 router.route('/register').post(register);
@@ -22,6 +23,9 @@ router
   .route('/profile')
   .get(verifyToken, getUserProfile)
   .put(verifyToken, updateUserProfile);
+
+router.route('/profile/:id').get(verifyToken, getUserProfileByID);
+
 router.get('/', (req, res, next) => {
   res.send('Health OK');
 });

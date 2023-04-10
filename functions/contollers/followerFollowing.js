@@ -1,9 +1,31 @@
 const User = require('../models/users.model');
 const mongoose = require('../utils/dbConn');
+
+exports.fetchFollowStatus = async (req, res) => {
+  const { displayedUserId } = req.params;
+  const loggedInUserId = req.data.user._id;
+
+  try {
+    const displayedUser = await User.findById(displayedUserId);
+    const loggedInUser = await User.findById(loggedInUserId);
+
+    if (!displayedUser || !loggedInUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const isFollowing = loggedInUser.following.includes(displayedUserId);
+    const isFollowedBy = displayedUser.followers.includes(loggedInUserId);
+
+    res.json({ isFollowing, isFollowedBy });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
 // Follow a user
 exports.followUser = async (req, res) => {
   const { displayedUserId } = req.params;
-//   console.log(displayedUserId)
   const loggedInUserId =  req.data.user._id;
 
   try {
@@ -19,13 +41,17 @@ exports.followUser = async (req, res) => {
       return res.status(200).json({ 'isFollowing': true });
     }
 
-    // Add displayed user to the following list of the logged-in user
-    loggedInUser.following.push(displayedUserId);
-    await loggedInUser.save();
+    // Add displayed user to the following list of the logged-in user, if not already added
+    if (!loggedInUser.following.includes(displayedUserId)) {
+      loggedInUser.following.push(displayedUserId);
+      await loggedInUser.save();
+    }
 
-    // Add logged-in user to the follower list of the displayed user
-    displayedUser.followers.push(loggedInUserId);
-    await displayedUser.save();
+    // Add logged-in user to the follower list of the displayed user, if not already added
+    if (!displayedUser.followers.includes(loggedInUserId)) {
+      displayedUser.followers.push(loggedInUserId);
+      await displayedUser.save();
+    }
 
     res.json({ message: 'Followed successfully' });
   } catch (error) {
@@ -51,6 +77,20 @@ exports.getFollowCounts = async (req, res) => {
   }
 };
 
+exports.getFollowCountsByID = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id)
+    const user = await User.findById(id);
+    console.log(user)
+    const followerCount = user.followers.length;
+    const followingCount = user.following.length;
+    res.json({ followerCount, followingCount });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server  E error' });
+  }
+};
 
 
 // Unfollow a user
@@ -77,8 +117,8 @@ exports.unfollowUser = async (req, res) => {
     console.log(loggedInUser.following.toObject())
     loggedInUser.following = loggedInUser.following.filter(
       (id) => {
-        id !== mongoose.Types.ObjectId.createFromHexString(displayedUserId)
-    }
+        return id.toString() !== displayedUserId.toString();
+      }
     );
     console.log(loggedInUser.following.toObject())
     await loggedInUser.save();

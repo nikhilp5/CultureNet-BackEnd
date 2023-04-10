@@ -229,6 +229,27 @@ const getUserProfile = async (req, res, next) => {
   }
 };
 
+const getUserProfileByID = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if (user) {
+      res.json({
+        message: 'User found',
+        success: true,
+        user,
+      });
+    } else {
+      throw getError(404, 'User not found');
+    }
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+};
+
+
+
 const updateUserProfile = async (req, res, next) => {
   try {
     if (Object.keys(req.body).length > 0) {
@@ -287,4 +308,5 @@ module.exports = {
   updateUserProfile,
   verifyToken,
   resetPassword,
+  getUserProfileByID,
 };
