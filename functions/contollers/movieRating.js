@@ -1,3 +1,4 @@
+//Author - Pranay Raycha (B00932030)
 const MovieRating = require('../models/movies/movieRatings.model');
 
 const mongoose = require('../utils/dbConn');

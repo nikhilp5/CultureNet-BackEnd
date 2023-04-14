@@ -1,3 +1,4 @@
+//Author - Pranay Raycha (B00932030)
 const mongoose = require('../utils/dbConn');
 const Movie = require('../models/movies/movies.model');
 const watchlist = require("../models/watchlist.model");
