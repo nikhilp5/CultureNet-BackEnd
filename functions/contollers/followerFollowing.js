@@ -1,3 +1,4 @@
+//Author - Pranay Raycha (B00932030)
 const User = require('../models/users.model');
 const mongoose = require('../utils/dbConn');
 
