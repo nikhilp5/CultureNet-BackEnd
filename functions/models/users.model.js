@@ -1,3 +1,5 @@
+// Author: Monil Hitesh Andharia (B00884813)
+
 const mongoose = require('../utils/dbConn');
 
 const usersModel = mongoose.Schema({
@@ -37,14 +39,18 @@ const usersModel = mongoose.Schema({
   codeExpiry: {
     type: Date,
   },
-  followers: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }],
-  following: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }],
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 });
 
 module.exports = mongoose.model('users', usersModel);

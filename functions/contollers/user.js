@@ -1,3 +1,5 @@
+// Author: Monil Hitesh Andharia (B00884813)
+
 const validator = require('../utils/validator');
 const getError = require('../utils/getError');
 const User = require('../models/users.model');
@@ -247,8 +249,6 @@ const getUserProfileByID = async (req, res, next) => {
     next(err);
   }
 };
-
-
 
 const updateUserProfile = async (req, res, next) => {
   try {

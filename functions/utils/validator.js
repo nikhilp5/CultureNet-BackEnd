@@ -1,3 +1,5 @@
+// Author: Monil Hitesh Andharia (B00884813)
+
 const getError = require('./getError');
 
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;

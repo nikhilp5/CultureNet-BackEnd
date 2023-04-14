@@ -1,3 +1,5 @@
+// Author: Monil Hitesh Andharia (B00884813)
+
 const mongoose = require('mongoose');
 const conn_string =
   'mongodb+srv://root:toor@culturenet.2dvyi76.mongodb.net/?retryWrites=true&w=majority';

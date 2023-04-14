@@ -1,3 +1,5 @@
+// Author: Monil Hitesh Andharia (B00884813)
+
 const Music = require('../models/music/music.model');
 const watchlist = require('../models/watchlist.model');
 const watched = require('../models/watched.model');
@@ -45,7 +47,7 @@ const fetchMusicById = async (req, res, next) => {
     }
 
     let musicWatchlistContent = watchlistResult[0].musicId;
-    let bufferImg=music.image;
+    let bufferImg = music.image;
     musicWatchlistContent.forEach((watchlistBook) => {
       if (watchlistBook.toString() === music._id.toString()) {
         let watchlist = true;
@@ -60,7 +62,7 @@ const fetchMusicById = async (req, res, next) => {
         updatedMusic = { ...music.toObject(), watched };
       }
     });
-    updatedMusic["image"]=bufferImg;
+    updatedMusic['image'] = bufferImg;
     res.json(updatedMusic);
   } catch (err) {
     console.error(err);

@@ -1,3 +1,5 @@
+// Author: Monil Hitesh Andharia (B00884813)
+
 const nodemailer = require('nodemailer');
 
 const sendEmail = async (to, subject, text) => {

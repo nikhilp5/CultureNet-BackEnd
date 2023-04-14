@@ -1,3 +1,5 @@
+// Author: Monil Hitesh Andharia (B00884813)
+
 const errorHandler = (err, req, res, next) => {
   if (err.status) {
     res.status(err.status);

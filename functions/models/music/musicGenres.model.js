@@ -1,3 +1,5 @@
+// Author: Monil Hitesh Andharia (B00884813)
+
 const mongoose = require('../../utils/dbConn');
 
 const musicGenresModel = mongoose.Schema({

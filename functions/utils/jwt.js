@@ -1,3 +1,5 @@
+// Author: Monil Hitesh Andharia (B00884813)
+
 require('dotenv').config();
 var jwt = require('jsonwebtoken');
 
